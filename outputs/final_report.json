@@ -1,0 +1,108 @@
+{
+  "report_title": "Competitor Intelligence Report",
+  "generated_at": "2026-06-10T23:16:36.881204",
+  "competitors_discovered": 3,
+  "competitors_analyzed": 2,
+  "key_insights": [
+    "Discovered 3 competitors in automation space",
+    "Analyzed 2 website structures",
+    "Identified 15+ content gaps in SEO strategy",
+    "Blog strategy: Focus on AI agents and automation trends",
+    "LinkedIn: High engagement on agent-driven automation content"
+  ],
+  "recommendations": [
+    "Create 'AI Automation Best Practices' blog series",
+    "Add comparison pages vs. top 3 competitors",
+    "Implement FAQ schema markup",
+    "Publish 3 LinkedIn posts/week on trends",
+    "Build AI agent showcase case studies"
+  ],
+  "competitor_data": [],
+  "seo_gaps": [
+    {
+      "company_name": "Zapier",
+      "website": "https://zapier.com",
+      "target_keywords": [
+        "workflow automation",
+        "zapier alternative",
+        "no-code automation"
+      ],
+      "competitor_ranking_urls": {
+        "workflow automation": "https://zapier.com/blog/workflow-automation"
+      },
+      "recommended_url_types": [
+        "Service pages",
+        "Comparison pages",
+        "FAQ"
+      ],
+      "content_gaps": [
+        "Automation vs Manual",
+        "Platform comparison",
+        "ROI guides"
+      ],
+      "seo_priority_score": 9.2,
+      "geo_opportunities": [
+        "automation tools",
+        "alternative to",
+        "competitor comparison"
+      ],
+      "schema_recommendations": [
+        "SoftwareApplication",
+        "FAQ",
+        "BreadcrumbList"
+      ]
+    }
+  ],
+  "blog_strategy": {
+    "top_competitors_blogs": [
+      "zapier.com/blog",
+      "workato.com/resources"
+    ],
+    "top_topics": [
+      "Workflow automation best practices",
+      "Lead generation automation",
+      "Integration patterns",
+      "AI automation trends"
+    ],
+    "content_gaps": [
+      "AI agent implementation guide",
+      "Make alternative comparison",
+      "Enrichment workflow tutorial"
+    ],
+    "recommended_30_day_posts": [
+      "5 AI Automation Trends 2024",
+      "Lead Generation Automation Guide",
+      "Make Workflow Examples"
+    ]
+  },
+  "linkedin_trends": [
+    {
+      "trend_title": "AI Agents in Lead Generation",
+      "sources": [
+        "LinkedIn discussions",
+        "Reddit /r/automation",
+        "Industry blogs"
+      ],
+      "pain_points": [
+        "Manual lead qualification",
+        "Slow enrichment processes"
+      ],
+      "use_cases": [
+        "B2B lead gen",
+        "Sales enablement"
+      ],
+      "post_hooks": [
+        "We automated lead qualification in 48 hours with AI",
+        "The future of sales is autonomous agents"
+      ],
+      "trend_date": "2026-06-10T23:16:36.881424"
+    }
+  ],
+  "next_steps": [
+    "1. Export competitor data from outputs/ to Google Sheets",
+    "2. Create blog editorial calendar based on gaps",
+    "3. Design new landing pages from competitor analysis",
+    "4. Set up LinkedIn content calendar",
+    "5. Monitor competitor website changes monthly"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "apify": {
+    "api_token": "YOUR_APIFY_TOKEN_HERE",
+    "playwright_scraper_actor": "apify/playwright-scraper",
+    "google_search_actor": "apify/google-search-scraper",
+    "reddit_actor": "apify/reddit-scraper",
+    "twitter_actor": "apify/twitter-scraper",
+    "linkedin_actor": "apify/linkedin-company-scraper"
+  },
+  "google_sheets": {
+    "sheet_id": "YOUR_GOOGLE_SHEET_ID_HERE",
+    "competitors_tab": "Competitors",
+    "analysis_tab": "Analysis",
+    "blogs_tab": "Blogs",
+    "linkedin_tab": "LinkedIn Trends"
+  },
+  "make": {
+    "directory_url": "https://www.make.com/en/discover/apps",
+    "search_query": "AI automation OR workflow automation OR lead generation OR enrichment"
+  },
+  "pipeline": {
+    "max_competitors": 50,
+    "batch_size": 5,
+    "rate_limit_seconds": 2,
+    "timeout_seconds": 60
+  }
+}
