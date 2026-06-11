@@ -122,6 +122,25 @@ header{position:sticky;top:0;z-index:100;background:var(--ink);color:#fff;paddin
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
 .faq-a p{padding:0 20px 18px;font-size:0.95rem;color:#5a5778;line-height:1.7}
 
+/* Carousel */
+.carousel-container{position:relative;max-width:900px;margin:0 auto;background:#fff;border:1px solid var(--lavender);border-radius:12px;overflow:hidden}
+.carousel-slide{display:none;padding:50px 40px;text-align:center;animation:fadeIn .5s ease-in-out}
+.carousel-slide.active{display:block}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.carousel-slide h3{color:var(--ink);margin-bottom:20px;font-size:1.6rem}
+.carousel-section{text-align:left;margin-bottom:24px}
+.carousel-label{font-family:'IBM Plex Mono';font-size:0.75rem;color:var(--purple);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.carousel-desc{font-size:1rem;color:#5a5778;line-height:1.7;margin-bottom:16px}
+.carousel-outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.carousel-outcome{background:rgba(76,24,232,.05);border:1px solid rgba(76,24,232,.15);border-radius:8px;padding:16px;font-size:0.9rem;color:var(--ink);line-height:1.6}
+.carousel-outcome-number{font-family:'IBM Plex Mono';color:var(--green);font-weight:700;display:block;margin-bottom:4px}
+.carousel-controls{display:flex;align-items:center;justify-content:center;gap:20px;padding:24px}
+.carousel-nav{background:var(--violet);color:#fff;border:none;width:44px;height:44px;border-radius:8px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.carousel-nav:hover{background:var(--purple);transform:scale(1.1)}
+.carousel-dots{display:flex;gap:8px}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:rgba(76,24,232,.3);cursor:pointer;transition:all .2s}
+.carousel-dot.active{background:var(--violet);width:30px;border-radius:5px}
+
 /* CTA Section */
 .cta-bg{background:linear-gradient(135deg,var(--violet),var(--purple));color:#fff}
 .cta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
@@ -147,6 +166,14 @@ footer{background:var(--ink);color:#fff;padding:60px 0 30px;border-top:1px solid
   .pricing-grid{grid-template-columns:repeat(2,1fr)}
   .cta-grid{grid-template-columns:1fr}
   .foot-content{grid-template-columns:1fr 1fr}
+  .carousel-outcomes{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:768px){
+  .carousel-slide{padding:40px 30px}
+  .carousel-outcomes{grid-template-columns:repeat(2,1fr)}
+  .carousel-slide h3{font-size:1.4rem}
+  .carousel-controls{gap:16px}
+  .carousel-nav{width:40px;height:40px;font-size:1rem}
 }
 @media(max-width:640px){
   h1{font-size:2rem}h2{font-size:1.6rem}
@@ -156,6 +183,12 @@ footer{background:var(--ink);color:#fff;padding:60px 0 30px;border-top:1px solid
   .nav-menu{display:none}
   .foot-content{grid-template-columns:1fr}
   .foot-bottom{flex-direction:column;gap:16px}
+  .carousel-slide{padding:30px 20px}
+  .carousel-slide h3{font-size:1.2rem}
+  .carousel-outcomes{grid-template-columns:1fr;gap:12px}
+  .carousel-controls{flex-direction:column;gap:12px}
+  .carousel-dots{flex-wrap:wrap;justify-content:center}
+  .carousel-nav{width:40px;height:40px}
 }
 </style>
 </head>
@@ -302,6 +335,265 @@ footer{background:var(--ink);color:#fff;padding:60px 0 30px;border-top:1px solid
   </div>
 </section>
 
+<section id="usecases">
+  <div class="container">
+    <h2 class="section-title" data-de="9 Use Cases – Interaktiv erkunden" data-en="9 Use Cases – Interactive Exploration">9 Use Cases – Interaktiv erkunden</h2>
+    <p class="section-subtitle" data-de="Alle bewährten Automatisierungen detailliert. Klicken Sie durch, um zu sehen, wie jeder Use Case funktioniert." data-en="All proven automations in detail. Click through to see how each use case works.">Alle bewährten Automatisierungen detailliert. Klicken Sie durch, um zu sehen, wie jeder Use Case funktioniert.</p>
+
+    <div class="carousel-container">
+      <!-- Slide 1: Campaign Reporting -->
+      <div class="carousel-slide active">
+        <h3 data-de="Campaign Reporting Automation" data-en="Campaign Reporting Automation">Campaign Reporting Automation</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Account Manager verbringt 25+ Stunden/Woche mit Reporting: Daten aus Meta, Google, GA4, Spreadsheets exportieren, Reports zusammenstellen, manuell versenden." data-en="Account manager spends 25+ hours/week on reporting: exporting from Meta, Google, GA4, assembling reports, manual sending.">Account Manager verbringt 25+ Stunden/Woche mit Reporting: Daten aus Meta, Google, GA4, Spreadsheets exportieren, Reports zusammenstellen, manuell versenden.</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="KI-System sammelt automatisch Daten, generiert Dashboards, schreibt Executive Summaries, versendet Reports täglich/wöchentlich an Clients – völlig automatisiert." data-en="AI system auto-collects data, generates dashboards, writes executive summaries, sends reports daily/weekly to clients – fully automated.">KI-System sammelt automatisch Daten, generiert Dashboards, schreibt Executive Summaries, versendet Reports täglich/wöchentlich an Clients – völlig automatisiert.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">80-90%</span>
+            <span data-de="Zeitersparnis" data-en="Time saved">Zeitersparnis</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">100+ Std</span>
+            <span data-de="pro Monat freigegeben" data-en="per month freed">pro Monat freigegeben</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">✓</span>
+            <span data-de="Bessere Client-Kommunikation" data-en="Better client communication">Bessere Client-Kommunikation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Campaign Monitoring -->
+      <div class="carousel-slide">
+        <h3 data-de="Campaign Monitoring & Analysis Automation" data-en="Campaign Monitoring & Analysis Automation">Campaign Monitoring & Analysis</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Kampagnen-Performance wird nicht in Echtzeit überwacht. Budget Drift, CPA Spikes und Anomalien werden zu spät erkannt, wodurch ROI verlorengeht." data-en="Campaign performance not monitored in real-time. Budget drift, CPA spikes, anomalies detected too late, wasting ROI.">Kampagnen-Performance wird nicht in Echtzeit überwacht. Budget Drift, CPA Spikes und Anomalien werden zu spät erkannt, wodurch ROI verlorengeht.</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="24/7 KI-Überwachung aller Kampagnen. Erkennt Anomalien automatisch, sendet sofortige Alerts und schlägt Optimierungen vor." data-en="24/7 AI monitoring of all campaigns. Auto-detects anomalies, sends instant alerts, recommends optimizations.">24/7 KI-Überwachung aller Kampagnen. Erkennt Anomalien automatisch, sendet sofortige Alerts und schlägt Optimierungen vor.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">⚡</span>
+            <span data-de="Reduzierter Wasted Spend" data-en="Reduced wasted spend">Reduzierter Wasted Spend</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">→</span>
+            <span data-de="Schnellere Issue Response" data-en="Faster response to issues">Schnellere Issue Response</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">📊</span>
+            <span data-de="Bessere Kampagnen-Stabilität" data-en="Better campaign stability">Bessere Kampagnen-Stabilität</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Campaign Optimization -->
+      <div class="carousel-slide">
+        <h3 data-de="Campaign Optimization on Meta, Google" data-en="Campaign Optimization on Meta, Google">Campaign Optimization</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Media Buyer optimiert manuell und reaktiv: überprüft täglich Accounts, adjustiert Bids langsam – viele Chancen werden verpasst, Skalierung ist inkonsequent." data-en="Media buyer optimizes manually and reactively: checks accounts daily, adjusts bids slowly – many opportunities missed, scaling inconsistent.">Media Buyer optimiert manuell und reaktiv: überprüft täglich Accounts, adjustiert Bids langsam – viele Chancen werden verpasst, Skalierung ist inkonsequent.</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="KI-Automatisierung analysiert Performance-Muster, macht automatische Bid-Adjustments, Audience-Optimierungen, Creative-Swaps basierend auf Echtzeit-Daten – proaktiv, nicht reaktiv." data-en="AI automation analyzes performance patterns, makes automatic bid adjustments, audience optimizations, creative swaps based on real-time data – proactive.">KI-Automatisierung analysiert Performance-Muster, macht automatische Bid-Adjustments, Audience-Optimierungen, Creative-Swaps basierend auf Echtzeit-Daten – proaktiv, nicht reaktiv.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">60-80%</span>
+            <span data-de="schnellere Launches" data-en="faster launches">schnellere Launches</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">↓</span>
+            <span data-de="Reduzierte Setup-Fehler" data-en="Reduced setup errors">Reduzierte Setup-Fehler</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">✓</span>
+            <span data-de="Standardisierte Strukturen" data-en="Standardized structures">Standardisierte Strukturen</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Lead Generation -->
+      <div class="carousel-slide">
+        <h3 data-de="Lead Generation Automation" data-en="Lead Generation Automation">Lead Generation Automation</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Sales Team verbringt Stunden damit, Leads zu recherchieren und zu qualifizieren. Prozess ist inkonsistent, Coverage ist niedrig, Pipeline unregelmäßig." data-en="Sales team spends hours researching and qualifying leads. Process inconsistent, coverage low, pipeline irregular.">Sales Team verbringt Stunden damit, Leads zu recherchieren und zu qualifizieren. Prozess ist inkonsistent, Coverage ist niedrig, Pipeline unregelmäßig.</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="KI identifiziert automatisch qualifizierte Prospects nach Ihrem ICP, enriched Kontaktdaten, baut kontinuierlich Lead-Listen auf – skalierbar und konsistent." data-en="AI automatically identifies qualified prospects per your ICP, enriches contact data, builds lead lists continuously – scalable and consistent.">KI identifiziert automatisch qualifizierte Prospects nach Ihrem ICP, enriched Kontaktdaten, baut kontinuierlich Lead-Listen auf – skalierbar und konsistent.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">✓</span>
+            <span data-de="Konsistente Pipeline" data-en="Consistent pipeline">Konsistente Pipeline</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">↓</span>
+            <span data-de="Reduzierte Recherchzeit" data-en="Reduced prospecting time">Reduzierte Recherchzeit</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">↑</span>
+            <span data-de="Höhere Lead-Qualität" data-en="Higher quality leads">Höhere Lead-Qualität</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Lead Outreach -->
+      <div class="carousel-slide">
+        <h3 data-de="Lead Outreach Automation" data-en="Lead Outreach Automation">Lead Outreach Automation</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Outreach-Kampagnen sind zeitaufwändig und unpersonalisiert. Response-Raten sind niedrig, Meetings werden mühsam generiert, Team verbringt Zeit mit manuellen Follow-ups." data-en="Outreach campaigns are time-consuming and impersonal. Response rates low, meetings hard to generate, team spends time on manual follow-ups.">Outreach-Kampagnen sind zeitaufwändig und unpersonalisiert. Response-Raten sind niedrig, Meetings werden mühsam generiert, Team verbringt Zeit mit manuellen Follow-ups.</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="KI-generierte, hochgradig personalisierte Outreach über LinkedIn & Email. System passt Subject Lines und Copy basierend auf Prospect-Daten an und klassifiziert Responses automatisch." data-en="AI-generated, highly personalized outreach via LinkedIn & Email. System adapts subject lines and copy based on prospect data, auto-classifies responses.">KI-generierte, hochgradig personalisierte Outreach über LinkedIn & Email. System passt Subject Lines und Copy basierend auf Prospect-Daten an und klassifiziert Responses automatisch.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">↑</span>
+            <span data-de="Mehr Conversations" data-en="More conversations">Mehr Conversations</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">📈</span>
+            <span data-de="Erhöhte Meeting-Rate" data-en="Increased meetings">Erhöhte Meeting-Rate</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">⚡</span>
+            <span data-de="Verbesserte Sales-Effizienz" data-en="Improved sales efficiency">Verbesserte Sales-Effizienz</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Email Agent (Gmail) -->
+      <div class="carousel-slide">
+        <h3 data-de="Gmail Client Request Automation" data-en="Gmail Client Request Automation">Email Agent</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Team wird durch wiederkehrende Client-Anfragen in Gmail belastet. Antwort-Zeiten sind langsam, Konsistenz fehlt, Admin-Arbeit nimmt viel Zeit in Anspruch." data-en="Team burdened by recurring client requests in Gmail. Response times slow, consistency lacking, admin work takes significant time.">Team wird durch wiederkehrende Client-Anfragen in Gmail belastet. Antwort-Zeiten sind langsam, Konsistenz fehlt, Admin-Arbeit nimmt viel Zeit in Anspruch.</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="KI klassifiziert eingehende Anfragen automatisch, generiert Response-Entwürfe in Ihrer Brand Voice, sendet aus oder archiviert – Team wird entlastet und kann sich auf strategische Arbeit konzentrieren." data-en="AI auto-classifies incoming requests, generates response drafts in your brand voice, sends or archives – team relief, focus on strategy.">KI klassifiziert eingehende Anfragen automatisch, generiert Response-Entwürfe in Ihrer Brand Voice, sendet aus oder archiviert – Team wird entlastet.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">⚡</span>
+            <span data-de="Schnellere Kommunikation" data-en="Faster communication">Schnellere Kommunikation</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">↓</span>
+            <span data-de="Reduzierter Workload" data-en="Reduced workload">Reduzierter Workload</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">✓</span>
+            <span data-de="Besserer Client-Service" data-en="Better client experience">Besserer Client-Service</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Competitor Monitoring -->
+      <div class="carousel-slide">
+        <h3 data-de="Competitor Monitoring Automation" data-en="Competitor Monitoring Automation">Competitor Monitoring</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Konkurrenten-Aktivitäten werden manuell überwacht oder gar nicht. Neue Services, Preisänderungen, Positioning-Shifts werden zu spät erkannt – strategische Chancen werden verpasst." data-en="Competitor activities monitored manually or not at all. New services, pricing changes, positioning shifts detected too late – strategic opportunities missed.">Konkurrenten-Aktivitäten werden manuell überwacht oder gar nicht. Neue Services, Preisänderungen, Positioning-Shifts werden zu spät erkannt – strategische Chancen werden verpasst.</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="KI überwacht Konkurrenten-Websites, Service-Seiten, Social Profiles, Jobangebote kontinuierlich. Erkennt und meldet Änderungen automatisch 3x pro Woche." data-en="AI continuously monitors competitor websites, service pages, social profiles, job postings. Auto-detects and reports changes 3x/week.">KI überwacht Konkurrenten-Websites, Service-Seiten, Social Profiles, Jobangebote kontinuierlich. Erkennt und meldet Änderungen automatisch 3x pro Woche.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">👁️</span>
+            <span data-de="Frühe Markt-Chancen" data-en="Early market opportunities">Frühe Markt-Chancen</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">⚡</span>
+            <span data-de="Schnellere Anpassung" data-en="Faster adaptation">Schnellere Anpassung</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">🎯</span>
+            <span data-de="Bessere Strategien" data-en="Better strategic decisions">Bessere Strategien</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Trends Monitoring -->
+      <div class="carousel-slide">
+        <h3 data-de="Trends Monitoring Automation" data-en="Trends Monitoring Automation">Industry News & Content</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Content-Team verbringt Stunden damit, Trends zu recherchieren. Ideen sind generisch, nicht auf aktuelle Diskussionen basierend. Thought Leadership ist reaktiv, nicht proaktiv." data-en="Content team spends hours researching trends. Ideas generic, not based on current discussions. Thought leadership reactive, not proactive.">Content-Team verbringt Stunden damit, Trends zu recherchieren. Ideen sind generisch, nicht auf aktuelle Diskussionen basierend. Thought Leadership ist reaktiv, nicht proaktiv.</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="KI überwacht Reddit, LinkedIn, Blogs, News täglich auf Trends. Extrahiert häufig diskutierte Probleme, Market Sentiment, virale Discussions – liefert täglich Content-Ideen." data-en="AI monitors Reddit, LinkedIn, blogs, news daily for trends. Extracts frequently discussed problems, market sentiment, viral discussions – delivers daily content ideas.">KI überwacht Reddit, LinkedIn, Blogs, News täglich auf Trends. Extrahiert häufig diskutierte Probleme, Market Sentiment, virale Discussions – liefert täglich Content-Ideen.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">💡</span>
+            <span data-de="Bessere Content-Ideen" data-en="Better content ideas">Bessere Content-Ideen</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">⚡</span>
+            <span data-de="Schnellere Creation" data-en="Faster creation">Schnellere Creation</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">📈</span>
+            <span data-de="Relevantem Thought Leadership" data-en="Relevant thought leadership">Relevantem Thought Leadership</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 9: Lead Enrichment -->
+      <div class="carousel-slide">
+        <h3 data-de="Lead Enrichment Automation" data-en="Lead Enrichment Automation">Lead Enrichment</h3>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Problem" data-en="Problem">Problem</div>
+          <div class="carousel-desc" data-de="Outreach wird ohne echten Kontext durchgeführt. Sales-Team kennt keine LinkedIn-Activity, Company News, Hiring-Signals – Outreach ist generisch, Response-Raten niedrig (2-3%)." data-en="Outreach done without real context. Sales team unaware of LinkedIn activity, company news, hiring signals – outreach generic, response rates low (2-3%).">Outreach wird ohne echten Kontext durchgeführt. Sales-Team kennt keine LinkedIn-Activity, Company News, Hiring-Signals – Outreach ist generisch, Response-Raten niedrig (2-3%).</div>
+        </div>
+        <div class="carousel-section">
+          <div class="carousel-label" data-de="Lösung" data-en="Solution">Lösung</div>
+          <div class="carousel-desc" data-de="KI enriched jeden Prospect vor Outreach mit LinkedIn Activity, Company News, Funding, Website Changes und generiert personalisierte Insights für jede Ansprache." data-en="AI enriches every prospect before outreach with LinkedIn activity, company news, funding, website changes – generates personalized insights for each message.">KI enriched jeden Prospect vor Outreach mit LinkedIn Activity, Company News, Funding, Website Changes und generiert personalisierte Insights für jede Ansprache.</div>
+        </div>
+        <div class="carousel-outcomes">
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">+40%</span>
+            <span data-de="Response Rate Increase" data-en="Response rate increase">Response Rate Increase</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">💬</span>
+            <span data-de="Personalisierte Nachrichten" data-en="Personalized messaging">Personalisierte Nachrichten</span>
+          </div>
+          <div class="carousel-outcome">
+            <span class="carousel-outcome-number">✓</span>
+            <span data-de="Bessere Conversations" data-en="Better conversations">Bessere Conversations</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="carousel-controls">
+        <button class="carousel-nav" onclick="previousSlide()" aria-label="Previous slide">←</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-nav" onclick="nextSlide()" aria-label="Next slide">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="cases" style="background:#fff">
   <div class="container">
     <h2 class="section-title" data-de="Fallstudien: Problem, Lösung, Ergebnis" data-en="Case Studies: Problem, Solution, Outcome">Fallstudien: Problem → Lösung → Ergebnis</h2>
@@ -416,7 +708,7 @@ footer{background:var(--ink);color:#fff;padding:60px 0 30px;border-top:1px solid
         <div class="price-label" data-de="Kern" data-en="Core">Kern</div>
         <h3 data-de="Quick-Win Projekt" data-en="Quick-Win Project">Quick-Win Projekt</h3>
         <p class="price-desc" data-de="1-3 Automatisierungen, komplett aufgebaut & getestet" data-en="1-3 automations, fully built & tested">1-3 Automatisierungen, komplett aufgebaut & getestet</p>
-        <div class="price-amount">€2.500–6.000</div>
+        <div class="price-amount">€1.200–6.000</div>
         <div class="price-period" data-de="pro Projekt" data-en="per project">pro Projekt</div>
         <ul class="price-features">
           <li data-de="Design & Build" data-en="Design & build">Design & Build</li>
@@ -625,6 +917,9 @@ footer{background:var(--ink);color:#fff;padding:60px 0 30px;border-top:1px solid
 
 <script>
 let currentLang = localStorage.getItem('weebaLang') || 'de';
+let currentSlide = 0;
+let carouselAutoPlay = true;
+let carouselInterval;
 
 function setLanguage(lang) {
   currentLang = lang;
@@ -657,9 +952,84 @@ function toggleFaq(btn) {
   }
 }
 
+// Carousel functions
+function initCarousel() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsContainer = document.getElementById('carouselDots');
+
+  // Create dots
+  slides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(index);
+    dot.setAttribute('aria-label', 'Slide ' + (index + 1));
+    dotsContainer.appendChild(dot);
+  });
+
+  // Start auto-play
+  startAutoPlay();
+}
+
+function showSlide(index) {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  // Wrap around
+  if (index >= slides.length) currentSlide = 0;
+  if (index < 0) currentSlide = slides.length - 1;
+
+  // Hide all slides
+  slides.forEach(slide => slide.classList.remove('active'));
+  dots.forEach(dot => dot.classList.remove('active'));
+
+  // Show current slide
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide++;
+  showSlide(currentSlide);
+  resetAutoPlay();
+}
+
+function previousSlide() {
+  currentSlide--;
+  showSlide(currentSlide);
+  resetAutoPlay();
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  showSlide(currentSlide);
+  resetAutoPlay();
+}
+
+function startAutoPlay() {
+  carouselInterval = setInterval(() => {
+    currentSlide++;
+    showSlide(currentSlide);
+  }, 5000);
+}
+
+function resetAutoPlay() {
+  clearInterval(carouselInterval);
+  startAutoPlay();
+}
+
 // Initialize
 setLanguage(currentLang);
 document.getElementById('btnDe').classList.add('active');
+
+// Initialize carousel when DOM is ready
+document.addEventListener('DOMContentLoaded', initCarousel);
+
+// Also initialize immediately in case DOM is already ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCarousel);
+} else {
+  initCarousel();
+}
 </script>
 </body>
 </html>
