@@ -1,0 +1,4 @@
+# Generated pipeline outputs
+*.json
+*.md
+!README.md
