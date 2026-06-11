@@ -39,13 +39,34 @@ class DesignerOrchestrator:
 
         brand_spec = brand_file.read_text(encoding='utf-8') if brand_file.exists() else ""
 
-        design_prompt = f"""You are an expert UX/UI designer creating a professional, conversion-optimized website for Weeba AI.
+        design_prompt = f"""You are an expert UX/UI designer creating a professional, conversion-optimized BILINGUAL website for Weeba AI (German + English).
 
 BRAND GUIDELINES (CRITICAL - apply exactly):
 {brand_spec}
 
-WEBSITE COPY (all 11 sections - use verbatim):
+WEBSITE COPY - GERMAN (all 11 sections - use verbatim):
 {website_copy}
+
+WEBSITE COPY - ENGLISH (translate the German copy above to English, maintaining the same tone: professional, operationally-grounded, commercial-sharp):
+[Generate professional English versions of all 11 sections]
+- Hero: "AI Automation for the Mittelstand. Live in 2 Weeks."
+- Problem/Pain Points: Translate German pain points to English context
+- Solution/How We Help: Maintain transparency, DSGVO/GDPR compliance messaging
+- Differentiators: Same 4 pillars in English
+- Process: 4-step process (Audit → Design → Build → Optimize)
+- Services & Automation: All 9 automation solutions with English names
+- Pricing: Same tiers and structure
+- Trust Signals: GDPR/EU compliance messaging
+- FAQ: English versions of 6 FAQs
+- CTAs: English call-to-action text
+- Footer: English navigation and legal links
+
+KEY REQUIREMENT: Implement language switching
+- Toggle button in header (DE | EN)
+- Stores language preference in localStorage
+- All content switches seamlessly
+- SEO-friendly: lang attributes on html element
+- URL structure can use hash or parameter (e.g., #de, #en)
 
 CASE STUDIES TO INTEGRATE (9 real-world AI automation examples):
 
@@ -99,7 +120,9 @@ DESIGN REQUIREMENTS (CRITICAL):
 1. **Header/Navigation:**
    - Logo: Weeba AI ribbon W symbol (left), "Weeba AI" wordmark in Space Grotesk Bold (right)
    - Navigation: Hero, Services, Pricing, Case Studies, About, Contact
+   - Language Toggle: "DE | EN" button in top-right (Manrope 14px, muted Routing Blue, bold when active)
    - Dark header (Midnight Ink #08072D), full-width hero video/image section below
+   - Language toggle switches all content instantly via JavaScript
 
 2. **Hero Section:**
    - Headline: "KI-Automatisierung für den Mittelstand. Live in 2 Wochen."
@@ -213,24 +236,38 @@ VOICE RULES (APPLY THROUGHOUT):
 
 DELIVERABLE:
 - Single-page HTML file with embedded CSS (responsive, mobile-first)
-- Semantic HTML5 structure
+- BILINGUAL: German (DE) and English (EN) versions with seamless language toggle
+- Semantic HTML5 structure with lang attributes
 - CSS Grid/Flexbox for responsive layouts
-- No JavaScript required for core functionality (can use minimal JS for accordion)
+- Minimal JavaScript for: language switching (localStorage), accordion, language toggle state
 - SVG icons where possible
 - Google Fonts imports
-- Meta tags for SEO/sharing
-- All 11 copy sections integrated
-- All 9 case studies accessible (3 featured + expandable modal for rest)
+- Meta tags for SEO/sharing (hreflang tags for bilingual SEO)
+- All 11 copy sections integrated in both languages
+- All 9 case studies accessible (3 featured + expandable modal for rest) in both languages
 - Partner logos in circular arrangement
 - Full brand specification applied
-- File: weeba-ai-website.html
+- Language preference persisted in localStorage
+- File: weeba-ai-website.html (bilingual, single file)
 
-Build a professional, conversion-optimized website that feels like an agency operating system, not a chatbot wrapper or crypto dashboard. Every section should feel operationally grounded and commercially sharp.
+Build a professional, conversion-optimized BILINGUAL website that feels like an agency operating system, not a chatbot wrapper or crypto dashboard. Every section should feel operationally grounded and commercially sharp.
+
+BILINGUAL IMPLEMENTATION DETAILS:
+1. Include all German copy from WEEBA_AI_WEBSITE_COPY.md as default language
+2. Create professional English translations of all sections
+3. Language toggle in header (DE | EN) positioned top-right
+4. Use JavaScript to switch between languages on click
+5. Store language preference in localStorage (key: 'weebaLanguage', value: 'de' or 'en')
+6. Default language: German (de)
+7. All CTAs, buttons, navigation switch language instantly
+8. Use data attributes (data-lang-de and data-lang-en) or structured JSON for content
+9. Ensure proper lang="de" or lang="en" on html element based on active language
+10. Mobile: Language toggle remains accessible in header (not in mobile menu)
 
 IMPORTANT: Output the complete HTML code in your response. Format as:
 
 ```html
-[complete HTML code here]
+[complete bilingual HTML code here]
 ```
 
 Then add a brief design summary at the end."""
