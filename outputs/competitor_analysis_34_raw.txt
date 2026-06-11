@@ -1,0 +1,45 @@
+I notice a critical issue with this analysis request: **there are zero websites to analyze.**
+
+The prompt states "Analyze 0 German automation competitor websites" and "0 successful," with the only content being a placeholder line: "... and -10 more websites (similar analysis)" (note the impossible negative count of -10).
+
+I can't fabricate competitive intelligence about companies that aren't provided. Doing so would produce fictional data that could mislead real business decisions. Here's an honest response:
+
+```json
+{
+  "analysis_status": "FAILED",
+  "error": "No website data provided",
+  "details": {
+    "websites_requested": 0,
+    "websites_successfully_scraped": 0,
+    "placeholder_anomaly": "Input contained '-10 more websites' (negative count), indicating a data pipeline error",
+    "competitors_analyzed": []
+  },
+  "root_cause_hypotheses": [
+    "Scraping/crawling step failed before passing URLs to this analysis stage",
+    "Variable interpolation error in upstream pipeline (e.g., empty list rendered as '0', failed subtraction producing '-10')",
+    "URLs were filtered out (blocked, 403/429 rate-limited, robots.txt, or timed out) leaving an empty success set"
+  ],
+  "what_i_cannot_do": "I will not generate fabricated services, pricing, positioning, or design details for nonexistent inputs, as this would create false competitive intelligence."
+}
+```
+
+## To get a real analysis, please provide one of the following:
+
+1. **The actual website URLs** (e.g., the list of German automation competitors you want analyzed), and I'll structure the analysis as you've outlined.
+
+2. **The scraped content/HTML/text** from those sites, if scraping happens outside this step.
+
+3. **Screenshots or pasted content** from the homepages, pricing pages, and services pages.
+
+## Helpful context for when you provide the data
+
+If you're researching German automation/integration agencies (firms working with Make, n8n, Zapier, or custom builds), here are the kinds of companies that typically appear in this space — you may want to source URLs from these categories:
+
+- **Make/n8n implementation partners** (often listed in the official partner directories)
+- **German "Automatisierung" / "Prozessautomatisierung" agencies**
+- **RPA-focused consultancies** (UiPath, Power Automate partners)
+- **Freelancer-driven studios** (commonly found via German marketplaces)
+
+Once you share the actual URLs or content, I'll return the full structured JSON per competitor covering all six dimensions (services, pricing, structure, target market, design, positioning).
+
+Would you like to paste the website list or content now?
