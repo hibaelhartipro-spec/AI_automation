@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weeba Performance — Performance Marketing Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#08072D;
+  --violet:#4C18E8;
+  --purple:#8C2BFF;
+  --cloud:#F7F5FF;
+  --green:#33D69F;
+  --orange:#FF6B4A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',sans-serif;
+  background:var(--cloud);
+  color:var(--ink);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;line-height:1.15;letter-spacing:-0.02em}
+.mono{font-family:'IBM Plex Mono',monospace}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
+
+/* HEADER */
+header{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(8,7,45,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(140,43,255,0.25);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:12px;color:var(--cloud);font-family:'Space Grotesk';font-weight:700;font-size:1.4rem}
+.logo svg{width:38px;height:38px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--cloud);font-weight:500;font-size:0.95rem;opacity:0.85;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.lang-toggle{display:flex;border:1px solid rgba(247,245,255,0.3);border-radius:30px;overflow:hidden;font-family:'IBM Plex Mono';font-size:0.8rem}
+.lang-toggle button{background:transparent;border:none;color:var(--cloud);padding:7px 14px;cursor:pointer;font-family:inherit;font-size:inherit;transition:.2s}
+.lang-toggle button.active{background:var(--orange);color:#fff}
+.menu-btn{display:none;background:none;border:none;color:var(--cloud);font-size:1.6rem;cursor:pointer}
+
+/* HERO */
+.hero{
+  background:radial-gradient(ellipse at 70% 0%,rgba(255,107,74,0.4),transparent 55%),
+             radial-gradient(ellipse at 0% 100%,rgba(76,24,232,0.35),transparent 50%),
+             var(--ink);
+  color:var(--cloud);
+  padding:110px 0 130px;
+  text-align:center;
+}
+.hero .tag{display:inline-block;font-family:'IBM Plex Mono';font-size:0.8rem;color:var(--orange);border:1px solid rgba(255,107,74,0.4);border-radius:30px;padding:6px 16px;margin-bottom:28px;letter-spacing:0.05em}
+.hero h1{font-size:clamp(2.2rem,5.5vw,4rem);font-weight:700;margin-bottom:26px;max-width:920px;margin-inline:auto}
+.hero p{font-size:clamp(1.05rem,2vw,1.3rem);max-width:760px;margin:0 auto 40px;opacity:0.88;font-weight:400}
+.btn{
+  display:inline-block;background:var(--orange);color:#fff;
+  font-weight:700;font-family:'Space Grotesk';font-size:1.05rem;
+  padding:18px 38px;border-radius:12px;transition:transform .2s,box-shadow .2s;
+  box-shadow:0 8px 30px rgba(255,107,74,0.3);
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(255,107,74,0.45)}
+.btn-alt{background:var(--purple);color:#fff;box-shadow:0 8px 30px rgba(140,43,255,0.35)}
+
+/* SECTIONS */
+section{padding:90px 0}
+.section-label{font-family:'IBM Plex Mono';font-size:0.82rem;color:var(--violet);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;display:block}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;margin-bottom:24px;max-width:780px}
+.lead{font-size:1.15rem;max-width:740px;opacity:0.85}
+
+/* PROBLEM */
+.problem{background:#fff}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;margin-top:50px}
+.problem-card{background:var(--cloud);border-radius:18px;padding:34px;border-left:4px solid var(--orange);transition:transform .25s}
+.problem-card:hover{transform:translateY(-6px)}
+.problem-card h3{font-size:1.25rem;margin-bottom:14px;color:var(--ink)}
+.problem-card p{font-size:0.98rem;opacity:0.82}
+
+/* SOLUTION */
+.solution{background:var(--ink);color:var(--cloud)}
+.solution .section-label{color:var(--orange)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-top:54px}
+.step{position:relative;padding:32px;border:1px solid rgba(255,107,74,0.3);border-radius:18px;background:rgba(255,107,74,0.06)}
+.step-num{font-family:'IBM Plex Mono';font-size:2.4rem;font-weight:600;color:var(--orange);display:block;margin-bottom:12px}
+.step h3{font-size:1.2rem;margin-bottom:10px}
+.step p{font-size:0.95rem;opacity:0.8}
+
+/* FEATURES */
+.features{background:#fff}
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-top:54px}
+.feature{background:var(--cloud);border-radius:18px;padding:32px;transition:transform .25s,box-shadow .25s;border-top:4px solid var(--orange)}
+.feature:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(8,7,45,0.12)}
+.feature-icon{width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--violet),var(--orange));display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:1.4rem}
+.feature h3{font-size:1.2rem;margin-bottom:12px}
+.feature p{font-size:0.95rem;opacity:0.82;margin-bottom:14px}
+.feature .metric{font-family:'IBM Plex Mono';font-size:0.85rem;color:var(--violet);font-weight:500}
+
+/* PLATFORMS */
+.platforms{background:var(--ink);color:var(--cloud);text-align:center}
+.platforms .section-label{color:var(--orange)}
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px;margin-top:50px}
+.platform{background:rgba(255,107,74,0.1);border:1px solid rgba(255,107,74,0.25);border-radius:14px;padding:24px 14px;font-family:'IBM Plex Mono';font-size:0.9rem;font-weight:500;transition:.25s}
+.platform:hover{background:rgba(255,107,74,0.2);border-color:var(--orange)}
+
+/* BENEFITS */
+.benefits{background:var(--cloud)}
+.benefit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px;margin-top:50px}
+.benefit{background:#fff;border-radius:18px;padding:32px;box-shadow:0 6px 24px rgba(8,7,45,0.05)}
+.benefit .ic{font-size:1.8rem;margin-bottom:14px;display:block}
+.benefit h3{font-size:1.15rem;margin-bottom:10px}
+.benefit p{font-size:0.95rem;opacity:0.82}
+
+/* PRICING */
+.pricing{background:#fff}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:54px}
+.price-card{border:1.5px solid rgba(8,7,45,0.1);border-radius:20px;padding:40px 34px;transition:.25s;background:var(--cloud)}
+.price-card.featured{border-color:var(--orange);background:var(--ink);color:var(--cloud);transform:scale(1.02)}
+.price-card:hover{transform:translateY(-6px)}
+.price-card.featured:hover{transform:scale(1.02) translateY(-6px)}
+.price-card h3{font-size:1.4rem;margin-bottom:8px}
+.price-tag{font-family:'Space Grotesk';font-size:2.4rem;font-weight:700;color:var(--violet);margin:14px 0}
+.price-card.featured .price-tag{color:var(--orange)}
+.price-card ul{list-style:none;margin:22px 0}
+.price-card li{padding:8px 0 8px 28px;position:relative;font-size:0.95rem}
+.price-card li:before{content:"✓";position:absolute;left:0;color:var(--orange);font-weight:700}
+
+/* STATS */
+.stats{background:linear-gradient(135deg,var(--violet),var(--orange));color:#fff;text-align:center}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;margin-top:30px}
+.stat-num{font-family:'Space Grotesk';font-size:3rem;font-weight:700}
+.stat-lbl{font-size:0.95rem;opacity:0.9;margin-top:6px}
+
+/* TESTIMONIAL */
+.testi{background:var(--cloud)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;margin-top:50px}
+.quote{background:#fff;border-radius:18px;padding:36px;box-shadow:0 6px 24px rgba(8,7,45,0.06)}
+.quote p{font-size:1.05rem;font-style:italic;margin-bottom:20px}
+.quote .author{font-family:'IBM Plex Mono';font-size:0.85rem;color:var(--violet)}
+
+/* FAQ */
+.faq{background:#fff}
+.faq-item{border-bottom:1px solid rgba(8,7,45,0.1);padding:22px 0;cursor:pointer}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-family:'Space Grotesk';font-weight:600;font-size:1.1rem}
+.faq-q span{color:var(--orange);font-size:1.5rem;transition:.3s}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;opacity:0.85}
+.faq-item.open .faq-a{max-height:300px;padding-top:14px}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+
+/* CTA */
+.cta-final{background:radial-gradient(ellipse at 50% 0%,rgba(255,107,74,0.45),transparent 60%),var(--ink);color:var(--cloud);text-align:center}
+.cta-final h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:22px}
+.cta-final p{font-size:1.15rem;opacity:0.88;max-width:620px;margin:0 auto 36px}
+
+/* FOOTER */
+footer{background:#04031a;color:var(--cloud);padding:60px 0 30px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-grid h4{font-size:1rem;margin-bottom:16px;color:var(--orange)}
+.foot-grid a{display:block;opacity:0.75;font-size:0.92rem;padding:5px 0;transition:.2s}
+.foot-grid a:hover{opacity:1;color:var(--orange)}
+.foot-bottom{border-top:1px solid rgba(247,245,255,0.12);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.85rem;opacity:0.7;font-family:'IBM Plex Mono'}
+
+@media(max-width:820px){
+  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:var(--ink);padding:24px;gap:18px;border-bottom:1px solid rgba(255,107,74,0.3)}
+  .nav-links.show{display:flex}
+  .menu-btn{display:block}
+  .foot-grid{grid-template-columns:1fr}
+  section{padding:64px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 100 100" fill="none">
+        <path d="M12 22 L28 78 L42 40 L50 70 L58 40 L72 78 L88 22" stroke="#FF6B4A" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M12 22 L28 78 L42 40 L50 70 L58 40 L72 78 L88 22" stroke="#FF6B4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+      Weeba Performance
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#problem" data-de="Herausforderung" data-en="Challenge">Herausforderung</a>
+      <a href="#solution" data-de="Lösung" data-en="Solution">Lösung</a>
+      <a href="#features" data-de="Features" data-en="Features">Features</a>
+      <a href="#pricing" data-de="Preise" data-en="Pricing">Preise</a>
+      <a href="#faq" data-de="FAQ" data-en="FAQ">FAQ</a>
+      <a href="#contact" class="btn-alt" style="padding:9px 20px;border-radius:8px;font-family:'Space Grotesk';font-weight:600" data-de="Jetzt starten" data-en="Get Started">Jetzt starten</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:14px">
+      <div class="lang-toggle">
+        <button id="btnDe" class="active" onclick="setLang('de')">DE</button>
+        <button id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('show')">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:90px">
+  <div class="container">
+    <span class="tag mono" data-de="Performance Marketing Automation" data-en="Performance Marketing Automation">Performance Marketing Automation</span>
+    <h1 data-de="Deine Marketing-Kampagnen automatisiert und optimiert." data-en="Your marketing campaigns automated and optimized.">Deine Marketing-Kampagnen automatisiert und optimiert.</h1>
+    <p data-de="Weeba Performance automatisiert die gesamte Performance-Marketing-Orchestrierung – von Kampagnenverwaltung über Budget-Optimierung bis zur ROI-Maximierung. Echtzeit-Datenflüsse, intelligente Bid-Automation und kontinuierliche Optimierung für maximale Effizienz."
+       data-en="Weeba Performance automates your entire performance marketing orchestration – from campaign management to budget optimization and ROI maximization. Real-time data flows, intelligent bid automation and continuous optimization for maximum efficiency.">Weeba Performance automatisiert die gesamte Performance-Marketing-Orchestrierung – von Kampagnenverwaltung über Budget-Optimierung bis zur ROI-Maximierung. Echtzeit-Datenflüsse, intelligente Bid-Automation und kontinuierliche Optimierung für maximale Effizienz.</p>
+    <a href="#contact" class="btn" data-de="Kostenlose Demo buchen" data-en="Book a Free Demo">Kostenlose Demo buchen</a>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <span class="section-label" data-de="Die Herausforderung" data-en="The Challenge">Die Herausforderung</span>
+    <h2 class="section-title" data-de="Performance Marketing wird immer komplexer – und Ihre Prozesse halten nicht Schritt." data-en="Performance marketing is getting more complex – and your processes aren't keeping up.">Performance Marketing wird immer komplexer – und Ihre Prozesse halten nicht Schritt.</h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <h3 data-de="Kampagnen werden manuell verwaltet" data-en="Campaigns are manually managed">Kampagnen werden manuell verwaltet</h3>
+        <p data-de="Google Ads, Meta, LinkedIn – jede Plattform einzeln. Bid-Adjustments, Budget-Verteilung und Pausierungen kosten täglich Stunden manueller Arbeit."
+           data-en="Google Ads, Meta, LinkedIn – each platform individually. Bid adjustments, budget allocation and pauses cost hours of manual work daily.">Google Ads, Meta, LinkedIn – jede Plattform einzeln. Bid-Adjustments, Budget-Verteilung und Pausierungen kosten täglich Stunden manueller Arbeit.</p>
+      </div>
+      <div class="problem-card">
+        <h3 data-de="Datensilos sabotieren Ihre Entscheidungen" data-en="Data silos sabotage your decisions">Datensilos sabotieren Ihre Entscheidungen</h3>
+        <p data-de="CRM, Analytics, Ad-Plattformen – die Daten kommunizieren nicht miteinander. Sie treffen Entscheidungen auf veralteten oder unvollständigen Informationen."
+           data-en="CRM, Analytics, Ad platforms – the data doesn't communicate. You make decisions on outdated or incomplete information.">CRM, Analytics, Ad-Plattformen – die Daten kommunizieren nicht miteinander. Sie treffen Entscheidungen auf veralteten oder unvollständigen Informationen.</p>
+      </div>
+      <div class="problem-card">
+        <h3 data-de="ROI-Optimierung bleibt Hoffnung" data-en="ROI optimization remains a hope">ROI-Optimierung bleibt Hoffnung</h3>
+        <p data-de="Sie wissen nicht, welche Kampagne, welcher Channel und welches Targeting wirklich profitabel sind. Lead-Qualität vs. Volumen – eine ständige Abwägung ohne echte Einblicke."
+           data-en="You don't know which campaign, channel and targeting is truly profitable. Lead quality vs. volume – a constant trade-off without real insights.">Sie wissen nicht, welche Kampagne, welcher Channel und welches Targeting wirklich profitabel sind. Lead-Qualität vs. Volumen – eine ständige Abwägung ohne echte Einblicke.</p>
+      </div>
+      <div class="problem-card">
+        <h3 data-de="Schnelle Reaktion auf Marktveränderungen?" data-en="React quickly to market changes?">Schnelle Reaktion auf Marktveränderungen?</h3>
+        <p data-de="Während der Markt sich bewegt, sind Sie noch damit beschäftigt, Berichte zu erstellen. Ihr Wettbewerb nutzt die neuen Trends längst. Sie sind immer einen Schritt zu spät."
+           data-en="While the market moves, you're still busy creating reports. Your competitors are already using the new trends. You're always one step too late.">Während der Markt sich bewegt, sind Sie noch damit beschäftigt, Berichte zu erstellen. Ihr Wettbewerb nutzt die neuen Trends längst. Sie sind immer einen Schritt zu spät.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="solution">
+  <div class="container">
+    <span class="section-label" data-de="Unsere Lösung" data-en="Our Solution">Unsere Lösung</span>
+    <h2 class="section-title" data-de="Vollständige Marketing-Orchestrierung in Echtzeit." data-en="Complete marketing orchestration in real-time.">Vollständige Marketing-Orchestrierung in Echtzeit.</h2>
+    <p class="lead" data-de="Weeba Performance verbindet alle Ihre Marketing-Tools und Datenquellen – und gibt Ihren Kampagnen ein Gehirn, das rund um die Uhr optimiert."
+       data-en="Weeba Performance connects all your marketing tools and data sources – and gives your campaigns a brain that optimizes 24/7.">Weeba Performance verbindet alle Ihre Marketing-Tools und Datenquellen – und gibt Ihren Kampagnen ein Gehirn, das rund um die Uhr optimiert.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h3 data-de="Daten zusammenführen" data-en="Consolidate data">Daten zusammenführen</h3>
+        <p data-de="Alle Datenquellen fließen in ein einziges System: Ad-Performance, CRM-Daten, Attribution, Konversionen – ein übergreifender Überblick."
+           data-en="All data sources flow into one system: ad performance, CRM data, attribution, conversions – a comprehensive overview.">Alle Datenquellen fließen in ein einziges System: Ad-Performance, CRM-Daten, Attribution, Konversionen – ein übergreifender Überblick.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h3 data-de="Kampagnen intelligent steuern" data-en="Intelligently control campaigns">Kampagnen intelligent steuern</h3>
+        <p data-de="KI-gesteuerte Bid-Adjustments, automatische Budgetverteilung und kontinuierliche A/B-Tests – ohne manuelle Eingriffe."
+           data-en="AI-driven bid adjustments, automatic budget allocation and continuous A/B testing – without manual intervention.">KI-gesteuerte Bid-Adjustments, automatische Budgetverteilung und kontinuierliche A/B-Tests – ohne manuelle Eingriffe.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h3 data-de="ROI-Optimierung in Echtzeit" data-en="Real-time ROI optimization">ROI-Optimierung in Echtzeit</h3>
+        <p data-de="Das System lernt kontinuierlich, welche Kombinationen aus Channel, Targeting und Creative die beste Rentabilität bringen. Automatisch angepasst, täglich neu bewertet."
+           data-en="The system continuously learns which combinations of channel, targeting and creative deliver the best profitability. Automatically adjusted, re-evaluated daily.">Das System lernt kontinuierlich, welche Kombinationen aus Channel, Targeting und Creative die beste Rentabilität bringen. Automatisch angepasst, täglich neu bewertet.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <h3 data-de="Dashboards & Insights" data-en="Dashboards & Insights">Dashboards & Insights</h3>
+        <p data-de="Echtzeit-Dashboards zeigen exakt, was funktioniert. Automatisierte Berichte und Alerts bei anomalen Entwicklungen – so sind Sie immer einen Schritt voraus."
+           data-en="Real-time dashboards show exactly what works. Automated reports and alerts for anomalies – so you're always one step ahead.">Echtzeit-Dashboards zeigen exakt, was funktioniert. Automatisierte Berichte und Alerts bei anomalen Entwicklungen – so sind Sie immer einen Schritt voraus.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <span class="section-label" data-de="Kernfunktionen" data-en="Core Features">Kernfunktionen</span>
+    <h2 class="section-title" data-de="Die komplette Marketing-Automation, die Sie brauchen." data-en="The complete marketing automation you need.">Die komplette Marketing-Automation, die Sie brauchen.</h2>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3 data-de="Multi-Channel-Kampagnen-Management" data-en="Multi-Channel Campaign Management">Multi-Channel-Kampagnen-Management</h3>
+        <p data-de="Google Ads, Meta Ads, LinkedIn, TikTok – alle Plattformen aus einer Zentrale gesteuert. Ein Dashboard für alles."
+           data-en="Google Ads, Meta Ads, LinkedIn, TikTok – all platforms controlled from one hub. One dashboard for everything.">Google Ads, Meta Ads, LinkedIn, TikTok – alle Plattformen aus einer Zentrale gesteuert. Ein Dashboard für alles.</p>
+        <span class="metric" data-de="↓ 75 % Verwaltungsaufwand" data-en="↓ 75% management overhead">↓ 75 % Verwaltungsaufwand</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3 data-de="Intelligente Bid-Automation" data-en="Intelligent Bid Automation">Intelligente Bid-Automation</h3>
+        <p data-de="Automatische CPC/CPM-Anpassungen basierend auf Performance-Daten. Das System findet den optimalen Bid-Point für jede Audience und jedes Keyword."
+           data-en="Automatic CPC/CPM adjustments based on performance data. The system finds the optimal bid point for each audience and keyword.">Automatische CPC/CPM-Anpassungen basierend auf Performance-Daten. Das System findet den optimalen Bid-Point für jede Audience und jedes Keyword.</p>
+        <span class="metric" data-de="↑ 35 % bessere ROAS" data-en="↑ 35% better ROAS">↑ 35 % bessere ROAS</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💰</div>
+        <h3 data-de="Budget-Optimierung" data-en="Budget Optimization">Budget-Optimierung</h3>
+        <p data-de="Budgets werden automatisch zwischen Channels und Kampagnen verteilt – basierend auf Performance und Ziele. Keine verschwendeten Ausgaben mehr."
+           data-en="Budgets are automatically distributed between channels and campaigns – based on performance and goals. No more wasted spending.">Budgets werden automatisch zwischen Channels und Kampagnen verteilt – basierend auf Performance und Ziele. Keine verschwendeten Ausgaben mehr.</p>
+        <span class="metric" data-de="↑ 22 % höherer ROI" data-en="↑ 22% higher ROI">↑ 22 % höherer ROI</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🧠</div>
+        <h3 data-de="Attribution & Lead-Bewertung" data-en="Attribution & Lead Scoring">Attribution & Lead-Bewertung</h3>
+        <p data-de="Lernt die echte Customer Journey und bewertet Leads nach ihrer Konversionswahrscheinlichkeit. So konzentrieren Sie sich auf die wirklich wertvollen Leads."
+           data-en="Learns the true customer journey and scores leads by conversion probability. So you focus on truly valuable leads.">Lernt die echte Customer Journey und bewertet Leads nach ihrer Konversionswahrscheinlichkeit. So konzentrieren Sie sich auf die wirklich wertvollen Leads.</p>
+        <span class="metric" data-de="↑ 40 % höhere Conversion" data-en="↑ 40% higher conversion">↑ 40 % höhere Conversion</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📈</div>
+        <h3 data-de="Automatische A/B-Tests" data-en="Automatic A/B Testing">Automatische A/B-Tests</h3>
+        <p data-de="Das System testet kontinuierlich neue Creatives, Headlines und Landing Pages – und skaliert automatisch das, was funktioniert."
+           data-en="The system continuously tests new creatives, headlines and landing pages – and automatically scales what works.">Das System testet kontinuierlich neue Creatives, Headlines und Landing Pages – und skaliert automatisch das, was funktioniert.</p>
+        <span class="metric" data-de="↑ 28 % CTR-Steigerung" data-en="↑ 28% CTR improvement">↑ 28 % CTR-Steigerung</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🚨</div>
+        <h3 data-de="Anomalienerkennung & Alerts" data-en="Anomaly Detection & Alerts">Anomalienerkennung & Alerts</h3>
+        <p data-de="KI erkennt ungewöhnliche Performance-Veränderungen sofort. Sie werden benachrichtigt, bevor es zu spät ist. Schnelle Reaktion auf Probleme."
+           data-en="AI detects unusual performance changes immediately. You're notified before it's too late. Quick reaction to issues.">KI erkennt ungewöhnliche Performance-Veränderungen sofort. Sie werden benachrichtigt, bevor es zu spät ist. Schnelle Reaktion auf Probleme.</p>
+        <span class="metric" data-de="24/7 Monitoring" data-en="24/7 Monitoring">24/7 Monitoring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="platforms">
+  <div class="container">
+    <span class="section-label" data-de="Integrationen" data-en="Integrations">Integrationen</span>
+    <h2 class="section-title" style="margin-inline:auto" data-de="Mit allen Plattformen, die Sie bereits nutzen." data-en="With all the platforms you already use.">Mit allen Plattformen, die Sie bereits nutzen.</h2>
+    <div class="platform-grid">
+      <div class="platform">Google Ads</div>
+      <div class="platform">Meta Ads</div>
+      <div class="platform">LinkedIn Ads</div>
+      <div class="platform">TikTok Ads</div>
+      <div class="platform">HubSpot</div>
+      <div class="platform">Salesforce</div>
+      <div class="platform">Google Analytics</div>
+      <div class="platform">Mixpanel</div>
+      <div class="platform">Slack</div>
+      <div class="platform">Make</div>
+      <div class="platform">Zapier</div>
+      <div class="platform">Google Sheets</div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="container">
+    <span class="section-label" data-de="Warum Weeba Performance" data-en="Why Weeba Performance">Warum Weeba Performance</span>
+    <h2 class="section-title" data-de="Marketing-Effizienz auf ein neues Level." data-en="Marketing efficiency on a new level.">Marketing-Effizienz auf ein neues Level.</h2>
+    <div class="benefit-grid">
+      <div class="benefit">
+        <span class="ic">⚡</span>
+        <h3 data-de="Schnellere Kampagnenoptimierung" data-en="Faster campaign optimization">Schnellere Kampagnenoptimierung</h3>
+        <p data-de="Stunden manueller Arbeit werden zu automatischen Echtzeit-Optimierungen. Ihr Team kann sich auf Strategie konzentrieren, nicht auf Tagesgeschäft."
+           data-en="Hours of manual work become automatic real-time optimizations. Your team can focus on strategy, not on daily routines.">Stunden manueller Arbeit werden zu automatischen Echtzeit-Optimierungen. Ihr Team kann sich auf Strategie konzentrieren, nicht auf Tagesgeschäft.</p>
+      </div>
+      <div class="benefit">
+        <span class="ic">📊</span>
+        <h3 data-de="Volle Datentransparenz" data-en="Full data transparency">Volle Datentransparenz</h3>
+        <p data-de="Alle Daten fließen zusammen. Sie sehen exakt, welcher Channel, welche Kampagne, welches Targeting wirklich profitabel ist – keine verborgenen Ineffizienzen."
+           data-en="All data flows together. You see exactly which channel, campaign, targeting is truly profitable – no hidden inefficiencies.">Alle Daten fließen zusammen. Sie sehen exakt, welcher Channel, welche Kampagne, welches Targeting wirklich profitabel ist – keine verborgenen Ineffizienzen.</p>
+      </div>
+      <div class="benefit">
+        <span class="ic">💡</span>
+        <h3 data-de="KI-gesteuerte Entscheidungen" data-en="AI-driven decisions">KI-gesteuerte Entscheidungen</h3>
+        <p data-de="Das System lernt kontinuierlich aus Ihren Daten und schlägt datenbasierte Optimierungen vor – oder führt sie automatisch aus."
+           data-en="The system continuously learns from your data and suggests data-driven optimizations – or executes them automatically.">Das System lernt kontinuierlich aus Ihren Daten und schlägt datenbasierte Optimierungen vor – oder führt sie automatisch aus.</p>
+      </div>
+      <div class="benefit">
+        <span class="ic">🎯</span>
+        <h3 data-de="ROI-Fokus statt Vanity Metrics" data-en="ROI focus instead of vanity metrics">ROI-Fokus statt Vanity Metrics</h3>
+        <p data-de="Immer nur auf echte Geschäftsergebnisse ausgerichtet. Nicht mehr auf Klicks oder Impressionen, sondern auf Leads, Conversions und Umsatz."
+           data-en="Always focused on real business results. Not clicks or impressions, but leads, conversions and revenue.">Immer nur auf echte Geschäftsergebnisse ausgerichtet. Nicht mehr auf Klicks oder Impressionen, sondern auf Leads, Conversions und Umsatz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <h2 class="section-title" style="color:#fff;margin-inline:auto;text-align:center" data-de="Echte Ergebnisse. Messbar." data-en="Real results. Measurable.">Echte Ergebnisse. Messbar.</h2>
+    <div class="stat-grid">
+      <div><div class="stat-num mono">35%</div><div class="stat-lbl" data-de="bessere ROAS" data-en="better ROAS">bessere ROAS</div></div>
+      <div><div class="stat-num mono">75%</div><div class="stat-lbl" data-de="weniger manuelle Arbeit" data-en="less manual work">weniger manuelle Arbeit</div></div>
+      <div><div class="stat-num mono">22%</div><div class="stat-lbl" data-de="höherer ROI" data-en="higher ROI">höherer ROI</div></div>
+      <div><div class="stat-num mono">24/7</div><div class="stat-lbl" data-de="automatische Optimierung" data-en="automatic optimization">automatische Optimierung</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="section-label" data-de="Preise" data-en="Pricing">Preise</span>
+    <h2 class="section-title" data-de="Transparent und leistungsbasiert." data-en="Transparent and performance-based.">Transparent und leistungsbasiert.</h2>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3 data-de="Starter" data-en="Starter">Starter</h3>
+        <div class="price-tag" data-de="ab 1.500 €" data-en="from €1,500">ab 1.500 €</div>
+        <p data-de="Für kleine Teams." data-en="For small teams.">Für kleine Teams.</p>
+        <ul>
+          <li data-de="1-2 Kampagnen" data-en="1-2 campaigns">1-2 Kampagnen</li>
+          <li data-de="Basis-Automation" data-en="Basic automation">Basis-Automation</li>
+          <li data-de="Tägliche Reports" data-en="Daily reports">Tägliche Reports</li>
+          <li data-de="Email Support" data-en="Email support">Email Support</li>
+        </ul>
+        <a href="#contact" class="btn btn-alt" style="display:block;text-align:center" data-de="Demo buchen" data-en="Book demo">Demo buchen</a>
+      </div>
+      <div class="price-card featured">
+        <h3 data-de="Professional" data-en="Professional">Professional</h3>
+        <div class="price-tag" data-de="ab 3.500 €" data-en="from €3,500">ab 3.500 €</div>
+        <p style="opacity:0.85" data-de="Für wachsende Scale." data-en="For growing scale.">Für wachsende Scale.</p>
+        <ul>
+          <li data-de="Unbegrenzte Kampagnen" data-en="Unlimited campaigns">Unbegrenzte Kampagnen</li>
+          <li data-de="Vollständige KI-Optimierung" data-en="Full AI optimization">Vollständige KI-Optimierung</li>
+          <li data-de="Echtzeit-Dashboards" data-en="Real-time dashboards">Echtzeit-Dashboards</li>
+          <li data-de="Prioritäts-Support" data-en="Priority support">Prioritäts-Support</li>
+        </ul>
+        <a href="#contact" class="btn" style="display:block;text-align:center" data-de="Jetzt starten" data-en="Get started">Jetzt starten</a>
+      </div>
+      <div class="price-card">
+        <h3 data-de="Enterprise" data-en="Enterprise">Enterprise</h3>
+        <div class="price-tag" data-de="auf Anfrage" data-en="on request">auf Anfrage</div>
+        <p data-de="Benutzerdefinierte Lösungen." data-en="Custom solutions.">Benutzerdefinierte Lösungen.</p>
+        <ul>
+          <li data-de="White-Label möglich" data-en="White-label available">White-Label möglich</li>
+          <li data-de="Custom Integrations" data-en="Custom integrations">Custom Integrations</li>
+          <li data-de="Dedizierter Account Manager" data-en="Dedicated account manager">Dedizierter Account Manager</li>
+          <li data-de="24/7 Premium Support" data-en="24/7 premium support">24/7 Premium Support</li>
+        </ul>
+        <a href="#contact" class="btn btn-alt" style="display:block;text-align:center" data-de="Kontakt" data-en="Contact us">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="container">
+    <span class="section-label" data-de="Erfolgsgeschichten" data-en="Success Stories">Erfolgsgeschichten</span>
+    <h2 class="section-title" data-de="Was unsere Kunden berichten." data-en="What our customers report.">Was unsere Kunden berichten.</h2>
+    <div class="testi-grid">
+      <div class="quote">
+        <p data-de="„Innerhalb von 6 Wochen haben wir unsere ROAS um 40% gesteigert. Die automatische Bid-Optimierung allein spart uns 20 Stunden pro Woche."
+           data-en=""Within 6 weeks we increased our ROAS by 40%. Automatic bid optimization alone saves us 20 hours per week."">„Innerhalb von 6 Wochen haben wir unsere ROAS um 40% gesteigert. Die automatische Bid-Optimierung allein spart uns 20 Stunden pro Woche."</p>
+        <div class="author">— A. Schmidt, Head of Performance Marketing</div>
+      </div>
+      <div class="quote">
+        <p data-de="„Endlich haben wir einen Überblick über alle unsere Kanäle. Nicht mehr vier verschiedene Dashboards – alles ist in einer Zentrale orchestriert."
+           data-en=""Finally we have an overview of all our channels. No more four different dashboards – everything is orchestrated in one hub."">„Endlich haben wir einen Überblick über alle unsere Kanäle. Nicht mehr vier verschiedene Dashboards – alles ist in einer Zentrale orchestriert."</p>
+        <div class="author">— T. Meyer, Growth Manager, E-Commerce</div>
+      </div>
+      <div class="quote">
+        <p data-de="„Die Lead-Qualität hat sich massiv verbessert. Das System bewertet Leads intelligenter, und wir konzentrieren uns auf die Richtigen."
+           data-en=""Lead quality has massively improved. The system scores leads more intelligently, and we focus on the right ones."">„Die Lead-Qualität hat sich massiv verbessert. Das System bewertet Leads intelligenter, und wir konzentrieren uns auf die Richtigen."</p>
+        <div class="author">— K. Bergmann, VP Sales, SaaS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="section-label" data-de="FAQ" data-en="FAQ">FAQ</span>
+    <h2 class="section-title" data-de="Ihre Fragen beantwortet." data-en="Your questions answered.">Ihre Fragen beantwortet.</h2>
+    <div style="margin-top:30px">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><div data-de="Wie schnell sehe ich Ergebnisse?" data-en="How quickly will I see results?">Wie schnell sehe ich Ergebnisse?</div><span>+</span></div>
+        <div class="faq-a"><p data-de="Die Optimierungen laufen sofort nach dem Setup. Messbare Verbesserungen sehen Sie in der Regel innerhalb von 2-4 Wochen."
+           data-en="Optimizations run immediately after setup. Measurable improvements typically appear within 2-4 weeks.">Die Optimierungen laufen sofort nach dem Setup. Messbare Verbesserungen sehen Sie in der Regel innerhalb von 2-4 Wochen.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><div data-de="Welche Ad-Plattformen werden unterstützt?" data-en="Which ad platforms are supported?">Welche Ad-Plattformen werden unterstützt?</div><span>+</span></div>
+        <div class="faq-a"><p data-de="Wir unterstützen Google Ads, Meta Ads, LinkedIn, TikTok und weitere. Neue Integrationen werden kontinuierlich hinzugefügt."
+           data-en="We support Google Ads, Meta Ads, LinkedIn, TikTok and more. New integrations are continuously added.">Wir unterstützen Google Ads, Meta Ads, LinkedIn, TikTok und weitere. Neue Integrationen werden kontinuierlich hinzugefügt.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><div data-de="Brauche ich technische Vorkenntnisse?" data-en="Do I need technical knowledge?">Brauche ich technische Vorkenntnisse?</div><span>+</span></div>
+        <div class="faq-a"><p data-de="Nein. Wir übernehmen das komplette Setup. Sie müssen nur Ihre Kampagnenziele und KPIs definieren."
+           data-en="No. We handle the complete setup. You just need to define your campaign goals and KPIs.">Nein. Wir übernehmen das komplette Setup. Sie müssen nur Ihre Kampagnenziele und KPIs definieren.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><div data-de="Kann ich die Automation pausieren oder anpassen?" data-en="Can I pause or adjust the automation?">Kann ich die Automation pausieren oder anpassen?</div><span>+</span></div>
+        <div class="faq-a"><p data-de="Ja. Sie haben vollständige Kontrolle. Sie können Automation pausieren, manuelle Eingriffe vornehmen oder Regeln anpassen jederzeit."
+           data-en="Yes. You have full control. You can pause automation, make manual changes or adjust rules anytime.">Ja. Sie haben vollständige Kontrolle. Sie können Automation pausieren, manuelle Eingriffe vornehmen oder Regeln anpassen jederzeit.</p></div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q"><div data-de="Wie sicher sind meine Daten?" data-en="How secure is my data?">Wie sicher sind meine Daten?</div><span>+</span></div>
+        <div class="faq-a"><p data-de="Enterprise-Grade-Sicherheit. Verschlüsselte Verbindungen, reguläre Backups, DSGVO-konform. Ihre Daten sind bei uns sicher."
+           data-en="Enterprise-grade security. Encrypted connections, regular backups, GDPR-compliant. Your data is safe with us.">Enterprise-Grade-Sicherheit. Verschlüsselte Verbindungen, reguläre Backups, DSGVO-konform. Ihre Daten sind bei uns sicher.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final" id="contact">
+  <div class="container">
+    <h2 data-de="Bereit, Ihre Performance zu automatisieren?" data-en="Ready to automate your performance?">Bereit, Ihre Performance zu automatisieren?</h2>
+    <p data-de="Buchen Sie eine kostenlose Demo und sehen Sie selbst, wie Weeba Performance Ihre Marketing-Kampagnen optimiert."
+       data-en="Book a free demo and see for yourself how Weeba Performance optimizes your marketing campaigns.">Buchen Sie eine kostenlose Demo und sehen Sie selbst, wie Weeba Performance Ihre Marketing-Kampagnen optimiert.</p>
+    <a href="mailto:hello@weeba.ai" class="btn" data-de="Kostenlose Demo buchen" data-en="Book a free demo">Kostenlose Demo buchen</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:16px">
+          <svg viewBox="0 0 100 100" fill="none" style="width:34px;height:34px">
+            <path d="M12 22 L28 78 L42 40 L50 70 L58 40 L72 78 L88 22" stroke="#FF6B4A" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+          </svg>
+          Weeba Performance
+        </div>
+        <p style="opacity:0.7;max-width:340px;font-size:0.92rem" data-de="Performance Marketing Automation. Intelligente Bid-Optimierung. ROI-Maximierung. Vollständig automatisiert."
+           data-en="Performance Marketing Automation. Intelligent bid optimization. ROI maximization. Fully automated.">Performance Marketing Automation. Intelligente Bid-Optimierung. ROI-Maximierung. Vollständig automatisiert.</p>
+      </div>
+      <div>
+        <h4 data-de="Navigation" data-en="Navigation">Navigation</h4>
+        <a href="#problem" data-de="Herausforderung" data-en="Challenge">Herausforderung</a>
+        <a href="#solution" data-de="Lösung" data-en="Solution">Lösung</a>
+        <a href="#features" data-de="Features" data-en="Features">Features</a>
+        <a href="#pricing" data-de="Preise" data-en="Pricing">Preise</a>
+        <a href="#faq" data-de="FAQ" data-en="FAQ">FAQ</a>
+      </div>
+      <div>
+        <h4 data-de="Rechtliches" data-en="Legal">Rechtliches</h4>
+        <a href="#" data-de="Impressum" data-en="Imprint">Impressum</a>
+        <a href="#" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
+        <a href="#" data-de="AGB" data-en="Terms">AGB</a>
+        <a href="mailto:hello@weeba.ai">hello@weeba.ai</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Weeba Performance</span>
+      <span data-de="Made in Germany · DSGVO-konform" data-en="Made in Germany · GDPR-compliant">Made in Germany · DSGVO-konform</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function setLang(lang){
+  document.querySelectorAll('[data-de]').forEach(el=>{
+    el.textContent = el.getAttribute('data-'+lang);
+  });
+  document.documentElement.lang = lang;
+  document.getElementById('btnDe').classList.toggle('active',lang==='de');
+  document.getElementById('btnEn').classList.toggle('active',lang==='en');
+  localStorage.setItem('weeba_perf_lang',lang);
+}
+(function(){
+  const saved = localStorage.getItem('weeba_perf_lang') || 'de';
+  setLang(saved);
+})();
+</script>
+</body>
+</html>
