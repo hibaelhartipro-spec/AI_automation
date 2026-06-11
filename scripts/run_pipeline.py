@@ -70,9 +70,9 @@ class GrowthOrchestratorPipeline:
         print("\n💼 PHASE 5: LinkedIn Trends (linkedin-content-specialist)")
         self._analyze_linkedin()
 
-        # Phase 6: Report Generation
-        print("\n📄 PHASE 6: Report Generation")
-        self._generate_report()
+        # Phase 6: Orchestrator Summary
+        print("\n📄 PHASE 6: Orchestrator Summary")
+        self._generate_orchestrator_summary()
 
         print("\n✅ Pipeline Complete!")
 
@@ -80,8 +80,6 @@ class GrowthOrchestratorPipeline:
         """Agent 1: Find competitors from Make Partner Directory."""
         print("  → Scraping Make Partner Directory...")
 
-        # Simulate competitor discovery
-        # In production: Use Apify Google Search actor to find Make integrations
         sample_competitors = [
             Competitor(
                 company_name="Zapier",
@@ -121,6 +119,12 @@ class GrowthOrchestratorPipeline:
         self.competitors = [c.to_dict() for c in sample_competitors]
         self.report_data["competitors_discovered"] = len(self.competitors)
 
+        self._save_agent_report(
+            agent_name="scraper-competitor-researcher",
+            data={"competitors": self.competitors},
+            markdown_content=self._generate_competitor_report()
+        )
+
         print(f"  ✓ Discovered {len(self.competitors)} competitors")
         print(f"  📧 Data ready for Google Sheets: {self.sheets.get_sheet_url()}")
 
@@ -131,7 +135,6 @@ class GrowthOrchestratorPipeline:
         for competitor in self.competitors[:2]:  # Limit for demo
             print(f"    • Analyzing {competitor['company_name']}...")
 
-            # In production: Use Apify playwright-scraper
             analysis = {
                 "company_name": competitor["company_name"],
                 "website": competitor["website"],
@@ -150,6 +153,13 @@ class GrowthOrchestratorPipeline:
             self.analyses.append(analysis)
 
         self.report_data["competitors_analyzed"] = len(self.analyses)
+
+        self._save_agent_report(
+            agent_name="website-landing-page-optimizer",
+            data={"analyses": self.analyses},
+            markdown_content=self._generate_website_report()
+        )
+
         print(f"  ✓ Analyzed {len(self.analyses)} websites")
 
     def _analyze_seo(self):
@@ -173,6 +183,13 @@ class GrowthOrchestratorPipeline:
         ]
 
         self.report_data["seo_gaps"] = seo_gaps
+
+        self._save_agent_report(
+            agent_name="seo-geo-manager",
+            data={"seo_gaps": seo_gaps},
+            markdown_content=self._generate_seo_report()
+        )
+
         print(f"  ✓ Identified {len(seo_gaps)} priority SEO gaps")
 
     def _analyze_blogs(self):
@@ -200,6 +217,13 @@ class GrowthOrchestratorPipeline:
         }
 
         self.report_data["blog_strategy"] = blog_strategy
+
+        self._save_agent_report(
+            agent_name="blog-specialist",
+            data=blog_strategy,
+            markdown_content=self._generate_blog_report()
+        )
+
         print(f"  ✓ Developed blog strategy with {len(blog_strategy['recommended_30_day_posts'])} posts")
 
     def _analyze_linkedin(self):
@@ -221,11 +245,18 @@ class GrowthOrchestratorPipeline:
         ]
 
         self.report_data["linkedin_trends"] = linkedin_trends
+
+        self._save_agent_report(
+            agent_name="linkedin-content-specialist",
+            data={"trends": linkedin_trends},
+            markdown_content=self._generate_linkedin_report()
+        )
+
         print(f"  ✓ Found {len(linkedin_trends)} trending topics")
 
-    def _generate_report(self):
-        """Combine all agent outputs into final report."""
-        print("  → Compiling final report...")
+    def _generate_orchestrator_summary(self):
+        """Create orchestrator summary combining all agent outputs."""
+        print("  → Compiling orchestrator summary...")
 
         self.report_data["key_insights"] = [
             f"Discovered {self.report_data['competitors_discovered']} competitors in automation space",
@@ -244,34 +275,178 @@ class GrowthOrchestratorPipeline:
         ]
 
         self.report_data["next_steps"] = [
-            "1. Export competitor data from outputs/ to Google Sheets",
-            "2. Create blog editorial calendar based on gaps",
-            "3. Design new landing pages from competitor analysis",
-            "4. Set up LinkedIn content calendar",
-            "5. Monitor competitor website changes monthly"
+            "1. Review individual agent reports in outputs/",
+            "2. Export competitor data from outputs/ to Google Sheets",
+            "3. Create blog editorial calendar based on gaps",
+            "4. Design new landing pages from competitor analysis",
+            "5. Set up LinkedIn content calendar",
+            "6. Monitor competitor website changes monthly"
         ]
 
-        self._write_report_file()
+        self._write_orchestrator_report()
 
-    def _write_report_file(self):
-        """Write final report to Markdown and JSON."""
-        report_path = Path("outputs/final_report.md")
-        json_path = Path("outputs/final_report.json")
+    def _save_agent_report(self, agent_name: str, data: Dict[str, Any], markdown_content: str):
+        """Save individual agent report to JSON and Markdown."""
+        agent_dir = Path("outputs")
+        agent_dir.mkdir(exist_ok=True)
 
-        # Write JSON
+        json_path = agent_dir / f"{agent_name}.json"
+        md_path = agent_dir / f"{agent_name}.md"
+
+        with open(json_path, "w") as f:
+            json.dump(data, f, indent=2)
+
+        with open(md_path, "w") as f:
+            f.write(markdown_content)
+
+        print(f"  ✓ {agent_name} report saved to {md_path}")
+
+    def _write_orchestrator_report(self):
+        """Write orchestrator summary to Markdown and JSON."""
+        report_path = Path("outputs/ORCHESTRATOR_SUMMARY.md")
+        json_path = Path("outputs/ORCHESTRATOR_SUMMARY.json")
+
         with open(json_path, "w") as f:
             json.dump(self.report_data, f, indent=2)
 
-        # Write Markdown
-        md_content = self._generate_markdown_report()
+        md_content = self._generate_orchestrator_markdown()
         with open(report_path, "w") as f:
             f.write(md_content)
 
-        print(f"  ✓ Report saved to {report_path}")
-        print(f"  ✓ Data saved to {json_path}")
+        print(f"  ✓ Orchestrator summary saved to {report_path}")
+        print(f"  ✓ Summary data saved to {json_path}")
 
-    def _generate_markdown_report(self) -> str:
-        """Generate markdown formatted report."""
+    def _generate_competitor_report(self) -> str:
+        """Generate markdown report for competitor discovery agent."""
+        lines = [
+            "# Competitor Discovery Report",
+            f"\n**Agent**: scraper-competitor-researcher",
+            f"\n**Generated**: {datetime.now().isoformat()}",
+            f"\n## Summary",
+            f"\n**Total Competitors Discovered**: {len(self.competitors)}",
+            "\n## Competitors Found",
+        ]
+
+        for comp in self.competitors:
+            lines.append(f"\n### {comp['company_name']}")
+            lines.append(f"- **Website**: {comp['website']}")
+            lines.append(f"- **Source**: {comp['source']}")
+            lines.append(f"- **Description**: {comp.get('description', 'N/A')}")
+            lines.append(f"- **Country**: {comp.get('country', 'N/A')}")
+            lines.append(f"- **Category**: {comp.get('category', 'N/A')}")
+            lines.append(f"- **Confidence Score**: {comp.get('confidence_score', 0)}")
+
+        return "\n".join(lines)
+
+    def _generate_website_report(self) -> str:
+        """Generate markdown report for website optimizer agent."""
+        lines = [
+            "# Website & Landing Page Analysis Report",
+            f"\n**Agent**: website-landing-page-optimizer",
+            f"\n**Generated**: {datetime.now().isoformat()}",
+            f"\n## Summary",
+            f"\n**Websites Analyzed**: {len(self.analyses)}",
+            "\n## Website Analyses",
+        ]
+
+        for analysis in self.analyses:
+            lines.append(f"\n### {analysis['company_name']}")
+            lines.append(f"- **Website**: {analysis['website']}")
+            lines.append(f"- **Hero Type**: {analysis['hero_type']}")
+            lines.append(f"- **CTA Style**: {analysis['cta_style']}")
+            lines.append(f"- **Homepage Sections**: {', '.join(analysis.get('homepage_sections', []))}")
+            lines.append(f"- **Missing Sections**: {', '.join(analysis.get('missing_sections', []))}")
+
+        return "\n".join(lines)
+
+    def _generate_seo_report(self) -> str:
+        """Generate markdown report for SEO/GEO agent."""
+        lines = [
+            "# SEO & GEO Gap Analysis Report",
+            f"\n**Agent**: seo-geo-manager",
+            f"\n**Generated**: {datetime.now().isoformat()}",
+            f"\n## Summary",
+            f"\n**Gap Analysis Count**: {len(self.report_data['seo_gaps'])}",
+            "\n## SEO Gaps by Competitor",
+        ]
+
+        for gap in self.report_data["seo_gaps"]:
+            lines.append(f"\n### {gap['company_name']}")
+            lines.append(f"- **Website**: {gap['website']}")
+            lines.append(f"- **SEO Priority**: {gap['seo_priority_score']}/10")
+            lines.append(f"- **Target Keywords**: {', '.join(gap.get('target_keywords', [])[:3])}")
+            lines.append(f"- **Content Gaps**: {', '.join(gap.get('content_gaps', []))}")
+            lines.append(f"- **Recommended URLs**: {', '.join(gap.get('recommended_url_types', []))}")
+
+        return "\n".join(lines)
+
+    def _generate_blog_report(self) -> str:
+        """Generate markdown report for blog specialist agent."""
+        strategy = self.report_data["blog_strategy"]
+        lines = [
+            "# Blog Content Strategy Report",
+            f"\n**Agent**: blog-specialist",
+            f"\n**Generated**: {datetime.now().isoformat()}",
+            f"\n## Summary",
+            "\n## Competitor Blogs Analyzed",
+        ]
+
+        for blog in strategy.get("top_competitors_blogs", []):
+            lines.append(f"- {blog}")
+
+        lines.extend([
+            "\n## Top Topics Competitors Cover",
+        ])
+
+        for topic in strategy.get("top_topics", []):
+            lines.append(f"- {topic}")
+
+        lines.extend([
+            "\n## Content Gaps We Can Fill",
+        ])
+
+        for gap in strategy.get("content_gaps", []):
+            lines.append(f"- {gap}")
+
+        lines.extend([
+            "\n## Recommended 30-Day Posts",
+        ])
+
+        for post in strategy.get("recommended_30_day_posts", []):
+            lines.append(f"- {post}")
+
+        return "\n".join(lines)
+
+    def _generate_linkedin_report(self) -> str:
+        """Generate markdown report for LinkedIn specialist agent."""
+        lines = [
+            "# LinkedIn Trends & Content Strategy Report",
+            f"\n**Agent**: linkedin-content-specialist",
+            f"\n**Generated**: {datetime.now().isoformat()}",
+            f"\n## Summary",
+            f"\n**Trends Identified**: {len(self.report_data['linkedin_trends'])}",
+            "\n## Trending Topics",
+        ]
+
+        for trend in self.report_data["linkedin_trends"]:
+            lines.append(f"\n### {trend['trend_title']}")
+            lines.append(f"\n**Sources**:")
+            for source in trend.get("sources", []):
+                lines.append(f"- {source}")
+            lines.append(f"\n**Pain Points**:")
+            for pain in trend.get("pain_points", []):
+                lines.append(f"- {pain}")
+            lines.append(f"\n**Use Cases**:")
+            for use_case in trend.get("use_cases", []):
+                lines.append(f"- {use_case}")
+            lines.append(f"\n**Post Hooks**:")
+            for hook in trend.get("post_hooks", []):
+                lines.append(f"- {hook}")
+
+        return "\n".join(lines)
+
+    def _generate_orchestrator_markdown(self) -> str:
+        """Generate orchestrator summary markdown."""
         lines = [
             f"# {self.report_data['report_title']}",
             f"\n**Generated**: {self.report_data['generated_at']}",
@@ -287,34 +462,13 @@ class GrowthOrchestratorPipeline:
             lines.append(f"- {insight}")
 
         lines.extend([
-            "\n## Competitor Data",
-            f"\nSee [Google Sheets]({self.sheets.get_sheet_url()}) for full competitor database.",
-            f"\n**Competitor Count**: {len(self.report_data['competitor_data'])}",
-            "\n## SEO & GEO Gaps",
-        ])
-
-        for gap in self.report_data["seo_gaps"][:3]:
-            lines.append(f"\n### {gap['company_name']}")
-            lines.append(f"- **Priority Score**: {gap['seo_priority_score']}/10")
-            lines.append(f"- **Content Gaps**: {', '.join(gap['content_gaps'][:2])}")
-
-        lines.extend([
-            "\n## Blog Strategy",
-            f"\n### Top Topics to Cover",
-        ])
-
-        for topic in self.report_data["blog_strategy"].get("top_topics", [])[:3]:
-            lines.append(f"- {topic}")
-
-        lines.append("\n## LinkedIn Content Strategy")
-
-        for trend in self.report_data["linkedin_trends"][:2]:
-            lines.append(f"\n### {trend['trend_title']}")
-            lines.append("**Trending Keywords**:")
-            for hook in trend["post_hooks"][:1]:
-                lines.append(f"- {hook}")
-
-        lines.extend([
+            "\n## Agent Reports",
+            "\nIndividual reports generated by each specialist agent:",
+            "- `scraper-competitor-researcher.md` - Competitors discovered",
+            "- `website-landing-page-optimizer.md` - Website structure analysis",
+            "- `seo-geo-manager.md` - SEO gaps and opportunities",
+            "- `blog-specialist.md` - Blog strategy recommendations",
+            "- `linkedin-content-specialist.md` - LinkedIn trends and content ideas",
             "\n## Recommendations",
         ])
 
